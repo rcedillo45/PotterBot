@@ -1,0 +1,9 @@
+RAWDATA/HARRY/simplecontrol.top # default bot control
+RAWDATA/POTTERBOT/potterBot.top # tutorial bot data
+
+
+
+
+
+
+
