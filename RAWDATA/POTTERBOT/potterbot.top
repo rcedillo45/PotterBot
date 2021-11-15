@@ -1,0 +1,97 @@
+# This file is used to build the potterbot, the bot will talk about the characters in Harry Potter.
+# Ricardo Cedillo  |  University of Texas at Dallas |  November 14, 2021
+
+topic: ~introductions []
+
+t: ( %input<%userfirstline %input>0 )
+   ^keep()
+   [Welcome back] [Hello, again.][Glad you came back.][Hi.][Hi, again.]
+   ^respond(~question)
+
+t: ( %input<%userfirstline )
+   ^keep()
+   [Hello] [Hi] [Hey], [ask me anything ] [I will answer questions] about the characters in Harry Potter.
+   ^respond(~question)
+
+u: (what are you) ^keep() ^repeat() I am a bot that will answer Harry Potter Questions.
+
+u: (where do you live) ^keep() ^repeat() I live in the Alnwick Castle in Hogwarts.
+
+u: (<< who ron >>) ^keep() ^repeat()
+   [Ron is Harry Potter's best friend and is seen throughout the Harry Potter series.]
+   ^respond(~question)
+
+u: (<< who harry >>) ^keep() ^repeat()
+   [Harry Potter is the main character who has to defeat Voldemort who murdered his parents.]
+   ^respond(~question)
+
+u: (<< who hermione >>) ^keep() ^repeat()
+   [Hermione is Harry Potter's best friend and is seen throughout the Harry Potter series.]
+   ^respond(~question)
+
+u: (<< who dumbledore >>) ^keep() ^repeat()
+   [Albus Dumbledore was best known for being the Headmaster of Hogwarts, however he was also the Defence Against the Dark Arts Professor, and the Transfiguration Professor.]
+   ^respond(~question)
+
+u: (<< who voldemort >>) ^keep() ^repeat()
+   [Tom Riddle best known as Voldemort or Dark Lord, also called frequently called You-Know-Who.]
+   ^respond(~question)
+
+u: RON ([ron]) ^keep() ^repeat()
+   [Ron is the sixth and youngest son of Arthur and Molly Weasley.] [Ron and Hermione eventually married and had two children, Rose and Hugo Granger-Weasley.]
+   [Ron's talent in Wizard's Chess allowed them to pass one of the obstacles protecting the stone, which was a life-sized game.]
+   [Ron decided not to return to Hogwarts for their final year of studies to accompany Harry on his quest to find and destroy Lord Voldemort's Horcruxes.]
+   ^respond(~question)
+
+u: HARRY ([harry]) ^keep() ^repeat()
+   [The only child and son of James and Lily Potter.] [At school, Harry became best friends with Ron Weasley and Hermione Granger.]
+   [After the war, Harry became an Auror and helped reform and revolutionise the Ministry of Magic.]
+   [Harry married Ginny, with whom he had three children: James Sirius, Albus Severus, and Lily Luna.]
+   [On the evening of Hallowe'en in 1981, Lord Voldemort arrived at Godric's Hollow and murdered Harry's parents.]
+   [Harry decided not to return to Hogwarts for their final year of studies to find and destroy Lord Voldemort's Horcruxes.]
+   ^respond(~question)
+
+u: HERMIONE ([hermione]) ^keep() ^repeat()
+   [Ron and Hermione eventually married and had two children, Rose and Hugo Granger-Weasley.] [Hermione was granted permission to use a Time-Turner from the Ministry of Magic.]
+   [Hermione decided not to return to Hogwarts for their final year of studies to accompany Harry on his quest to find and destroy Lord Voldemort's Horcruxes.]
+   [After the War, Hermione became a member of the Ministry of Magic, furthering the cause for the better treatment of house-elves.]
+   ^respond(~question)
+
+u: DUMBLEDORE ([dumbledore]) ^keep() ^repeat()
+   [Dumbledore became most famous for defeating Grindelwald in arguably the most epic duel of all time.]
+   [Dumbledore was the wielder and the master of the Elder Wand for over 50 years.]
+   ^respond(~question)
+
+u: VOLDEMORT ([voldemort]) ^keep() ^repeat()
+   [Voldemort split his own spirit into a total of eight fragments, Riddle created seven Horcruxes, one unintentionally and without his knowledge — Harry Potter.]
+   [Voldemort's legacy and bloodline would live on through his daughter Delphini, whom he conceived with his loyal follower Bellatrix Lestrange.]
+   ^respond(~question)
+
+u: ([what where]) ^keep() ^repeat() Good question.
+
+
+topic: ~question keep nostay []
+
+u: (!$seen) ^repeat()
+   Have you read or watched Harry Potter?
+      a: (~yes)
+         $seen = yes
+         ^respond(~question)
+      a: (~no) Do you want to learn about Harry Potter?
+
+u: (!$favorite) ^repeat()
+   Who is your favorite character?
+      a: (_*)
+         $favorite = '_0
+         ^respond(~question)
+
+u: ($favorite)
+   Is your favorite character in Harry Potter still $favorite ?
+   a: (~no)
+      $favorite = null
+      ^respond(~question)
+   a: (~yes)
+      ^respond(~question)
+
+u: ($favorite) ^repeat()
+   What character do you want to learn about?
