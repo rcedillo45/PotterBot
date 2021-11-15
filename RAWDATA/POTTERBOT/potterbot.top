@@ -69,6 +69,8 @@ u: VOLDEMORT ([voldemort]) ^keep() ^repeat()
 
 u: ([what where]) ^keep() ^repeat() Good question.
 
+u: ($favorite [favorite]) ^keep() ^repeat() your favorite character is $favorite .
+
 
 topic: ~question keep nostay []
 
@@ -77,7 +79,7 @@ u: (!$seen) ^repeat()
       a: (~yes)
          $seen = yes
          ^respond(~question)
-      a: (~no) Do you want to learn about Harry Potter?
+      a: (~no) What character do you want to learn about?
 
 u: (!$favorite) ^repeat()
    Who is your favorite character?
@@ -86,7 +88,7 @@ u: (!$favorite) ^repeat()
          ^respond(~question)
 
 u: ($favorite)
-   Is your favorite character in Harry Potter still $favorite ?
+   Is your favorite character in Harry Potter $favorite ?
    a: (~no)
       $favorite = null
       ^respond(~question)
